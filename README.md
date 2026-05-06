@@ -1,17 +1,39 @@
-# Signal VOIP Registration Helper
-
-**macOS only.** Register a new Signal account using [`signal-cli`](https://github.com/AsamK/signal-cli) (no physical phone), then link **Signal Desktop** as a second device. Good for Google Voice / VOIP numbers and running **multiple Signal numbers** from one Mac.
-
-**Not** for “I already use Signal on my phone and only want another Desktop” — see [this wiki guide](https://github.com/blanchardjeremy/signal-voip-registration-helper/wiki/How-to-run-multiple-Signal-Desktop-instances-on-macOS) instead.
-
-Early-stage tool. Don’t use it to spam.
+# Signal Multiple Desktop Instances (Mac)
 
 ![Signal Desktop launcher icon color options](docs/images/icons.png)
 
+Two different tools to help you run multiple Signal instances on your Mac.
+1. [Mode 1: Run multiple Signal desktops, each linked to a **different phone**](#mode-1)
+2. [Mode 2: Run multiple Signal desktops **without extra phones**](#mode-2)
+
+
+<a id="mode-1"></a>
+# Mode 1: Run multiple Signal desktops, each linked to a different phone
+Use this if each Signal account you want on desktop already exists on a phone you control. Each desktop instance links to one phone's account.
+
+1. [Download the Signal launcher helper script here](https://github.com/blanchardjeremy/signal-multiple-desktop-mac/raw/refs/heads/main/signal_multiple_desktop_instances_generator.applescript)  
+2. Open the file you downloaded: **signal\_multiple\_desktop\_instances\_generator.applescript**  
+3. Click the “Play” icon in the top right corner of the screen. 
+   1. Follow the prompts  
+   2. Name it. (Example: **Work)**  
+   3. Save it to the default location (your **Applications** folder)  
+   4. Select an **icon color**. (See screenshot above.)
+   5. When prompted, click the **Create Signal-Primary** button
+4. Get the correct Signal apps in your dock
+   1. First, remove any old Signal you had in your dock bar at the bottom of the screen  
+   2. Go to your **Applications** folder  
+   3. Drag the new launcher app (**Signal-Work**) to your dock bar  
+   4. Drag the primary launcher app (**Signal-Primary**) to your dock bar.  
+5. **Open** the new Signal launcher.   
+6. **Link:** Follow the [usual instructions for linking your new Signal desktop instance to your phone](https://support.signal.org/hc/en-us/articles/360007320551-Linked-Devices).
+
+
+<a id="mode-2"></a>
+# Mode 2: Run multiple Signal desktops without extra phones
+Use this if you want additional Signal accounts that live only on your computer, with no physical phone attached. You'll register each new account using a VoIP number (example: Google Voice).
 ## Quick start
 
 1. **Get a number** you can receive SMS on (see [Phone numbers](#phone-numbers) below).
-
 2. **Install, clone, and run the wizard** ([Homebrew](https://brew.sh/) required for `brew`):
 
    ```bash
@@ -19,7 +41,7 @@ Early-stage tool. Don’t use it to spam.
    brew install signal-cli zbar
    git clone https://github.com/blanchardjeremy/signal-voip-registration-helper
    cd signal-voip-registration-helper
-
+   
    # Interactive setup wizard
    ./signal_voip_helper.py
    ```
