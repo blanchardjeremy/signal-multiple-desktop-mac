@@ -16,6 +16,9 @@ Use this if each Signal account you want on desktop already exists on a phone yo
 1. [Download the Signal launcher helper script here](https://github.com/blanchardjeremy/signal-multiple-desktop-mac/raw/refs/heads/main/signal_multiple_desktop_instances_generator.applescript)  
 2. Open the file you downloaded: **signal\_multiple\_desktop\_instances\_generator.applescript**  
 3. Click the “Play” icon in the top right corner of the screen.
+
+    <img width="484" height="232" alt="image" src="https://github.com/user-attachments/assets/d1cd97a1-39d8-487d-b639-944085c50ef2" />
+
    1. Follow the prompts  
    2. Name it. (Example: **Work)**  
    3. Save it to the default location (your **Applications** folder)  
