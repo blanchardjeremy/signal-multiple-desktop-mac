@@ -27,6 +27,14 @@ property kPrimaryInstanceName : "Primary"
 
 -- Signal Instance Launcher Generator
 try
+	-- Verify Signal Desktop is installed before doing anything else
+	if not my pathExists(kSignalAppPath) then
+		display dialog "Signal Desktop was not found at:" & return & kSignalAppPath & return & return & Â
+			"Please install Signal Desktop from https://signal.org/download and try again." Â
+			buttons {"OK"} default button "OK" with icon stop
+		error number -128
+	end if
+	
 	-- Loop until user provides a name that doesn't conflict with existing files
 	set instanceName to ""
 	set saveFolder to ""
