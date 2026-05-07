@@ -178,7 +178,7 @@ class SignalCLIInterface:
         # Get operation mode
         print("? What would you like to do?")
         print(self.ui.choice_option("1", "Register new account", "Set up Signal CLI as primary device"))
-        print(self.ui.choice_option("2", "Link Signal Desktop", "Add Signal Desktop as secondary device"))
+        print(self.ui.choice_option("2", "Link Desktop to existing account", "Only use if the number is already registered with signal-cli (typically via option 1)"))
         print()
         
         while True:
@@ -188,6 +188,17 @@ class SignalCLIInterface:
                 break
             elif choice == "2":
                 mode = "addDevice"
+                print()
+                print("ℹ️  Option 2 only works if the number is already registered with signal-cli")
+                print("   on this Mac (usually a number you set up earlier via option 1). It links")
+                print("   Signal Desktop as a secondary device to that existing account — it does")
+                print("   NOT register a new number. If you haven't registered yet, choose option 1.")
+                print()
+                confirm = input("? Is the number already registered with signal-cli? (y/N) › ").strip().lower()
+                if confirm not in ['y', 'yes']:
+                    print("  → Returning to the menu. Pick option 1 to register a new number first.")
+                    print()
+                    continue
                 # Check Signal Desktop status before proceeding
                 temp_config = RegistrationConfig(phone_number="+15551112222")  # temporary for check
                 temp_core = SignalCLICore(temp_config)

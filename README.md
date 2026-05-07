@@ -3,17 +3,20 @@
 ![Signal Desktop launcher icon color options](docs/images/icons.png)
 
 Two different tools to help you run multiple Signal instances on your Mac.
+
 1. [Mode 1: Run multiple Signal desktops, each linked to a **different phone**](#mode-1)
 2. [Mode 2: Run multiple Signal desktops **without extra phones**](#mode-2)
 
-
 <a id="mode-1"></a>
+
 # Mode 1: Run multiple Signal desktops, each linked to a different phone
+
 Use this if each Signal account you want on desktop already exists on a phone you control. Each desktop instance links to one phone's account.
 
 1. [Download the Signal launcher helper script here](https://github.com/blanchardjeremy/signal-multiple-desktop-mac/raw/refs/heads/main/signal_multiple_desktop_instances_generator.applescript)  
 2. Open the file you downloaded: **signal\_multiple\_desktop\_instances\_generator.applescript**  
 3. Click the “Play” icon in the top right corner of the screen.
+
     <img width="484" height="232" alt="image" src="https://github.com/user-attachments/assets/d1cd97a1-39d8-487d-b639-944085c50ef2" />
 
    1. Follow the prompts  
@@ -21,18 +24,20 @@ Use this if each Signal account you want on desktop already exists on a phone yo
    3. Save it to the default location (your **Applications** folder)  
    4. Select an **icon color**. (See screenshot above.)
    5. When prompted, click the **Create Signal-Primary** button
-5. Get the correct Signal apps in your dock
-   1. First, remove any old Signal you had in your dock bar at the bottom of the screen  
+4. Get the correct Signal apps in your dock
+   1. First, remove any old Signal you had in your dock bar at the bottom of the screen. **Important: only remove it from the Dock. Do not uninstall the original Signal app.** Right-click the Signal icon in the Dock and choose **Options → Remove from Dock** (or just drag it off the Dock). The Signal app should still exist in your **Applications** folder afterward.
    2. Go to your **Applications** folder  
    3. Drag the new launcher app (**Signal-Work**) to your dock bar  
    4. Drag the primary launcher app (**Signal-Primary**) to your dock bar.  
-6. **Open** the new Signal launcher.   
-7. **Link:** Follow the [usual instructions for linking your new Signal desktop instance to your phone](https://support.signal.org/hc/en-us/articles/360007320551-Linked-Devices).
-
+5. **Open** the new Signal launcher.
+6. **Link:** Follow the [usual instructions for linking your new Signal desktop instance to your phone](https://support.signal.org/hc/en-us/articles/360007320551-Linked-Devices).
 
 <a id="mode-2"></a>
+
 # Mode 2: Run multiple Signal desktops without extra phones
+
 Use this if you want additional Signal accounts that live only on your computer, with no physical phone attached. You'll register each new account using a VoIP number (example: Google Voice).
+
 ## Quick start
 
 1. **Get a number** you can receive SMS on (see [Phone numbers](#phone-numbers) below).
