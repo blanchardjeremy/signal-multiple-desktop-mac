@@ -735,6 +735,85 @@ class SignalCLIInterface:
         print()
         self._offer_install_receive_job(config.phone_number)
     
+    def _offer_registration_lock_pin(self, config: UserConfig):
+        """
+        Offer to set a Signal PIN / registration lock so no one else can
+        re-register this phone number. Setting a PIN with signal-cli enables
+        registration lock for the account.
+        """
+        import shutil
+        import subprocess
+
+        print(self.ui.section_header("Registration Lock (recommended)", "🔒"))
+        print("Setting a Signal PIN enables registration lock, which stops anyone")
+        print("else from registering your number without it. Keep this PIN somewhere")
+        print("safe, since you'll need it to re-register later.")
+        print()
+
+        try:
+            choice = input(
+                "? Set a Signal PIN / registration lock now? (Y/n) › "
+            ).strip().lower()
+        except (KeyboardInterrupt, EOFError):
+            print()
+            return
+
+        if choice in ("n", "no"):
+            print(
+                "   Skipped. You can set one later with:\n"
+                f"   signal-cli -a {config.phone_number} setPin <PIN>"
+            )
+            return
+
+        # Collect a PIN (min 4 chars, confirmed twice)
+        while True:
+            try:
+                pin = input(self.ui.input_prompt(
+                    "Enter a new PIN",
+                    "At least 4 digits (numbers only is simplest)",
+                )).strip()
+            except (KeyboardInterrupt, EOFError):
+                print()
+                return
+            if len(pin) < 4:
+                print("  ❌ PIN must be at least 4 characters")
+                continue
+            try:
+                confirm = input(self.ui.input_prompt("Confirm PIN")).strip()
+            except (KeyboardInterrupt, EOFError):
+                print()
+                return
+            if pin != confirm:
+                print("  ❌ PINs didn't match, try again")
+                continue
+            break
+
+        # Apply via signal-cli. Setting a PIN enables registration lock.
+        signal_cli = shutil.which("signal-cli") or "signal-cli"
+        try:
+            result = subprocess.run(
+                [signal_cli, "-a", config.phone_number, "setPin", pin],
+                capture_output=True,
+                text=True,
+            )
+            if result.returncode == 0:
+                print("✅ PIN set. Registration lock is now enabled.")
+            else:
+                err = (result.stderr or result.stdout or "").strip()
+                print("⚠️  Could not set the PIN automatically.")
+                if err:
+                    print(f"   {err}")
+                print(
+                    "   Set it manually later with:\n"
+                    f"   {signal_cli} -a {config.phone_number} setPin <PIN>"
+                )
+        except Exception as e:
+            print(f"⚠️  Could not run signal-cli to set the PIN: {e}")
+            print(
+                "   Set it manually later with:\n"
+                f"   signal-cli -a {config.phone_number} setPin <PIN>"
+            )
+
     def _offer_install_receive_job(self, phone_number: str):
         """
         Offer to install a launchd job that runs `signal-cli receive` on a schedule.

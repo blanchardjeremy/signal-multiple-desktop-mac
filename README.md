@@ -46,7 +46,7 @@ Use this if you want additional Signal accounts that live only on your computer,
    ```bash
    # Install (zbar is for QR scanning)
    brew install signal-cli zbar
-   git clone https://github.com/blanchardjeremy/signal-voip-registration-helper
+   git clone https://github.com/blanchardjeremy/signal-multiple-desktop-mac
    cd signal-voip-registration-helper
    
    # Interactive setup wizard
